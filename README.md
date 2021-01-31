@@ -1,7 +1,11 @@
 turbo-flask
 ===========
 
-Integration of Hotwire's Turbo library with Flask.
+Integration of Hotwire's Turbo library with Flask, to allow you to create
+applications that look and feel like single-page apps without using
+JavaScript.
+
+![Todo App Demo](todo-demo.gif)
 
 How to Install
 --------------
