@@ -1,0 +1,24 @@
+<turbo-frame id="todo-{{ todo.id }}">
+  <li{% if todo.completed %} class="completed"{% endif %}>
+    {% if not edit_id %}
+      <form method="POST" action="{{ url_for('toggle', id=todo.id) }}">
+        <input type="submit" class="toggle{% if todo.completed %} checked{% endif %}">
+        <label></label>
+      </form>
+    {% else %}
+      <div>
+        <span class="toggle{% if todo.completed %} checked{% endif %}"></span>
+        <label></label>
+      </div>
+    {% endif %}
+    <label>{{ todo.task }}</label>
+    {% if not edit_id %}
+      <form method="GET" action="{{ url_for('edit', id=todo.id) }}" data-turbo-frame="all">
+        <button type="submit" class="change"></button>
+      </form>
+      <form method="POST" action="{{ url_for('delete', id=todo.id) }}">
+        <button type="submit" class="destroy"></button>
+      </form>
+    {% endif %}
+  </li>
+</turbo-frame>

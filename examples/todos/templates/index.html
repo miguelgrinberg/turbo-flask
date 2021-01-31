@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    {{ turbo() }}
+  </head>
+  <body>
+    <div class="todoapp">
+      <h1>todos</h1>
+      <turbo-frame id="all">
+        <form method="POST" id="form">
+          {% include '_todo_input.html' %}
+        </form>
+        <ul class="todo-list">
+          <turbo-frame id="todos">
+            {% for todo in todos %}
+              {% if todo.id != edit_id %}
+                {% include '_todo.html' %}
+              {% else %}
+                {% include '_todo_edit.html' %}
+              {% endif %}
+            {% endfor %}
+          </turbo-stream>
+        </ul>
+      </turbo-frame>
+    </div>
+  </body>
+</html>

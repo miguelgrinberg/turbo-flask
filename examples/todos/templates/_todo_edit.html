@@ -1,0 +1,11 @@
+<turbo-frame id="todo-{{ todo.id }}">
+  <li class="editing{% if todo.completed %} completed{% endif %}">
+    <div>
+      <span class="toggle{% if todo.completed %} checked{% endif %}"></span>
+      <label></label>
+    </div>
+    <form method="POST" action="{{ url_for('edit', id=todo.id) }}" data-turbo-frame="all">
+      <input type="text" name="task" value="{{ todo.task }}" class="edit" autofocus>
+    </form>
+  </li>
+</turbo-frame>
