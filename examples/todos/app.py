@@ -56,3 +56,7 @@ def delete(id):
     if turbo.can_stream():
         return turbo.stream(turbo.remove(target=f'todo-{todo.id}'))
     return redirect(url_for('index'))
+
+
+if __name__ == "__main__":
+    app.run()
