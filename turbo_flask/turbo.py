@@ -68,14 +68,18 @@ class Turbo:
                                           '/turbo-stream')
         if ws_route:
             return Markup(f'''<script type="module">
-import {{ connectStreamSource }} from "{url}";
-'connectStreamSource(new WebSocket("ws:/{ws_route}"));
+import * as Turbo from "{url}";
+Turbo.connectStreamSource(new WebSocket(`ws://${{location.host}}/{ws_route}`));
 </script>''')
         else:
             return Markup(f'<script type="module" src="{url}"></script>')
 
     def context_processor(self):
         return {'turbo': self.turbo}
+
+    def requested_frame(self):
+        """Returns the target frame the client expects, or `None`."""
+        return request.headers.get('Turbo-Frame')
 
     def can_stream(self):
         """Returns `True` if the client accepts turbo stream reponses."""
