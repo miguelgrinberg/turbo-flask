@@ -6,7 +6,7 @@ from jinja2 import Markup
 
 _CDN = 'https://cdn.skypack.dev'
 _PKG = '@hotwired/turbo'
-_VER = 'v7.0.0-beta.4-TQFv5Y2xd4hn2VnTxVul'
+_VER = 'v7.0.0-beta.5-LhgiwOUjafYu3bb8VbTv'
 
 
 class Turbo:
@@ -18,7 +18,8 @@ class Turbo:
             self.init_app(app)
 
     def init_app(self, app):
-        ws_route = app.config.get('TURBO_WEBSOCKET_ROUTE', '/turbo-stream')
+        ws_route = app.config.setdefault('TURBO_WEBSOCKET_ROUTE',
+                                         '/turbo-stream')
         if ws_route:
             self.sock = Sock()
 
@@ -58,9 +59,10 @@ class Turbo:
         return uuid.uuid4().hex
 
     def turbo(self, version=_VER, url=None):
-        """Add turbo.js to the template.
+        """Add turbo.js to the page.
 
-        Add `{{ turbo() }}` in the `<head>` section of your main template.
+        You must add `{{ turbo() }}` in the `<head>` section of your main
+        template to activate turbo.js.
         """
         if url is None:
             url = f'{_CDN}/pin/{_PKG}@{version}/min/{_PKG}.js'
@@ -69,7 +71,7 @@ class Turbo:
         if ws_route:
             return Markup(f'''<script type="module">
 import * as Turbo from "{url}";
-Turbo.connectStreamSource(new WebSocket(`ws://${{location.host}}/{ws_route}`));
+Turbo.connectStreamSource(new WebSocket(`ws://${{location.host}}{ws_route}`));
 </script>''')
         else:
             return Markup(f'<script type="module" src="{url}"></script>')
