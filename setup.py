@@ -9,7 +9,7 @@ from setuptools import setup
 
 setup(
     name='Turbo-Flask',
-    version='0.0.1',
+    version='0.5.0',
     url='http://github.com/miguelgrinberg/turbo-flask/',
     license='MIT',
     author='Miguel Grinberg',
