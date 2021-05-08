@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Turbo-Flask Streams Demo</title>
+    <style>
+th, td {
+  padding: 6px;
+  text-align: center;
+}
+      .load {
+        float: right;
+        width: 300px;
+        border: 1px solid black;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+    </style>
+    {{ turbo() }}
+  </head>
+  <body>
+    {% include "loadavg.html" %}
+    {% block content %}{% endblock %}
+  </body>
+</html>
