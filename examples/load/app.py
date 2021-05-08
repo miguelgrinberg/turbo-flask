@@ -1,3 +1,6 @@
+import random
+import re
+import sys
 import threading
 import time
 from flask import Flask, render_template
@@ -16,9 +19,12 @@ def update_load():
 
 @app.context_processor
 def inject_load():
-    with open('/proc/loadavg', 'rt') as f:
-        load = f.read().split()[0:3]
-    return {'load5': load[0], 'load10': load[1], 'load15':load[2]}
+    if sys.platform.startswith('linux'): 
+        with open('/proc/loadavg', 'rt') as f:
+            load = f.read().split()[0:3]
+    else:
+        load = [int(random.random() * 100) / 100 for _ in range(3)]
+    return {'load5': load[0], 'load10': load[1], 'load15': load[2]}
 
 
 @app.before_first_request
