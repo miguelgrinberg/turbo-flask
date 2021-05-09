@@ -10,13 +10,6 @@ app = Flask(__name__)
 turbo = Turbo(app)
 
 
-def update_load():
-    with app.app_context():
-        while True:
-            time.sleep(5)
-            turbo.push(turbo.replace(render_template('loadavg.html'), 'load'))
-
-
 @app.context_processor
 def inject_load():
     if sys.platform.startswith('linux'): 
@@ -27,11 +20,6 @@ def inject_load():
     return {'load1': load[0], 'load5': load[1], 'load15': load[2]}
 
 
-@app.before_first_request
-def before_first_request():
-    threading.Thread(target=update_load).start()
-
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -40,3 +28,15 @@ def index():
 @app.route('/page2')
 def page2():
     return render_template('page2.html')
+
+
+@app.before_first_request
+def before_first_request():
+    threading.Thread(target=update_load).start()
+
+
+def update_load():
+    with app.app_context():
+        while True:
+            time.sleep(5)
+            turbo.push(turbo.replace(render_template('loadavg.html'), 'load'))
