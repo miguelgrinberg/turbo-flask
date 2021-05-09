@@ -3,10 +3,6 @@
   <head>
     <title>Turbo-Flask Streams Demo</title>
     <style>
-th, td {
-  padding: 6px;
-  text-align: center;
-}
       .load {
         float: right;
         width: 300px;
@@ -14,6 +10,10 @@ th, td {
         margin-left: 10px;
         margin-bottom: 10px;
         padding: 10px;
+      }
+      .load th, .load td {
+        padding: 6px;
+        text-align: center;
       }
     </style>
     {{ turbo() }}

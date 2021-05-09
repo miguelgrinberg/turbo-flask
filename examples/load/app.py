@@ -24,7 +24,7 @@ def inject_load():
             load = f.read().split()[0:3]
     else:
         load = [int(random.random() * 100) / 100 for _ in range(3)]
-    return {'load5': load[0], 'load10': load[1], 'load15': load[2]}
+    return {'load1': load[0], 'load5': load[1], 'load15': load[2]}
 
 
 @app.before_first_request
