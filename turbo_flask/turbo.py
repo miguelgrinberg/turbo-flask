@@ -171,4 +171,7 @@ Turbo.connectStreamSource(new WebSocket(`ws://${{location.host}}{ws_route}`));
             to = self.clients.keys()
         for recipient in to:
             for ws in self.clients[recipient]:
-                ws.send(stream)
+                try:
+                    ws.send(stream)
+                except ConnectionClosed:
+                    pass
