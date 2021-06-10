@@ -71,7 +71,11 @@ class Turbo:
         if ws_route:
             return Markup(f'''<script type="module">
 import * as Turbo from "{url}";
-Turbo.connectStreamSource(new WebSocket(`ws://${{location.host}}{ws_route}`));
+try {
+    Turbo.connectStreamSource(new WebSocket(`ws://${location.host}/turbo-stream`));
+} catch(error) {
+    Turbo.connectStreamSource(new WebSocket(`wss://${location.host}/turbo-stream`));
+}
 </script>''')
         else:
             return Markup(f'<script type="module" src="{url}"></script>')
