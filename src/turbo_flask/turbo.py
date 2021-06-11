@@ -165,10 +165,10 @@ Turbo.connectStreamSource(new WebSocket(`ws://${{location.host}}{ws_route}`));
                    connected clients, or to a list of ids to target multiple
                    clients.
         """
-        if to in self.clients:
-            to = [to]
-        elif to is None:
+        if to is None:
             to = self.clients.keys()
+        elif not hasattr(to, '__len__') or isinstance(to, str):
+            to = [to]
         for recipient in to:
             for ws in self.clients[recipient]:
                 try:
