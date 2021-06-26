@@ -1,1 +1,1 @@
-from turbo_flask.turbo import Turbo
+from turbo_flask.turbo import Turbo  # noqa: F401
