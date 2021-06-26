@@ -1,7 +1,7 @@
 import uuid
 from flask import request, current_app
 from flask_sock import Sock, ConnectionClosed
-from jinja2 import Markup
+from markupsafe import Markup
 
 
 _CDN = 'https://cdn.skypack.dev'
@@ -71,8 +71,8 @@ class Turbo:
         if ws_route:
             return Markup(f'''<script type="module">
 import * as Turbo from "{url}";
-Turbo.connectStreamSource(new WebSocket(`ws://${{location.host}}{ws_route}`));
-</script>''')
+Turbo.connectStreamSource(new WebSocket(`ws${{location.protocol.substring(4)}}//${{location.host}}{ws_route}`));
+</script>''')  # noqa: E501
         else:
             return Markup(f'<script type="module" src="{url}"></script>')
 
