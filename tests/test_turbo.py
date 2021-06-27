@@ -106,3 +106,45 @@ class TestTurbo(unittest.TestCase):
         rv = app.test_client().get('/test')
         assert b'/js/turbo.js' in rv.data
         assert b'Turbo.connectStreamSource' in rv.data
+
+    def test_requested_frame(self):
+        app = Flask(__name__)
+        turbo = turbo_flask.Turbo(app)
+
+        with app.test_request_context('/', headers={'Turbo-Frame': 'foo'}):
+            assert turbo.requested_frame() == 'foo'
+
+    def test_can_stream(self):
+        app = Flask(__name__)
+        turbo = turbo_flask.Turbo(app)
+
+        with app.test_request_context('/', headers={'Accept': 'text/html'}):
+            assert not turbo.can_stream()
+        with app.test_request_context(
+                '/', headers={'Accept': 'text/vnd.turbo-stream.html'}):
+            assert turbo.can_stream()
+
+    def test_can_push(self):
+        app = Flask(__name__)
+        turbo = turbo_flask.Turbo(app)
+
+        assert not turbo.can_push()
+        turbo.clients = {'123': 'client'}
+        assert turbo.can_push()
+        assert turbo.can_push(to='123')
+        assert not turbo.can_push(to='456')
+
+    def test_streams(self):
+        app = Flask(__name__)
+        turbo = turbo_flask.Turbo(app)
+
+        actions = ['append', 'prepend', 'replace', 'update']
+        for action in actions:
+            assert getattr(turbo, action)('foo', 'bar') == (
+                f'<turbo-stream action="{action}" target="bar">'
+                f'<template>foo</template></turbo-stream>'
+            )
+        assert turbo.remove('bar') == (
+            '<turbo-stream action="remove" target="bar">'
+            '<template></template></turbo-stream>'
+        )
