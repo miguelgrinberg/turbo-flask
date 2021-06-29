@@ -40,29 +40,16 @@ class Turbo:
             self.sock.init_app(app)
         app.context_processor(self.context_processor)
 
-    def user_id(self, f):
-        """Configure an application-specific user id generator, to allow the
-        application to push updates over WebSocket to individual clients.
-
-        Example:
-
-        @turbo.user_id
-        def get_user_id():
-            return current_user.id
-        """
-        self.user_id_callback = f
-        return f
-
-    def default_user_id(self):
-        """Default user id generator. An application-specific function can be
-        configured with the ``@user_id`` decorator."""
-        return uuid.uuid4().hex
-
     def turbo(self, version=_VER, url=None):
         """Add turbo.js to the page.
 
-        You must add ``{{ turbo() }}`` in the ``<head>`` section of your main
-        template to activate turbo.js.
+        This method is accessible in template files as ``turbo``. You must add
+        ``{{ turbo() }}`` in the ``<head>`` section of your main template to
+        activate turbo.js.
+
+        :param version: the version of turbo.js to load.
+        :param url: The URL for the turbo.js library, or ``None`` to use the
+                    default version and CDN.
         """
         if url is None:
             url = f'{_CDN}/pin/{_PKG}@{version}/min/{_PKG}.js'
@@ -75,6 +62,24 @@ Turbo.connectStreamSource(new WebSocket(`ws${{location.protocol.substring(4)}}//
 </script>''')  # noqa: E501
         else:
             return Markup(f'<script type="module" src="{url}"></script>')
+
+    def user_id(self, f):
+        """Configure an application-specific user id generator, to allow the
+        application to push updates over WebSocket to individual clients.
+
+        Example::
+
+            @turbo.user_id
+            def get_user_id():
+                return current_user.id
+        """
+        self.user_id_callback = f
+        return f
+
+    def default_user_id(self):
+        """Default user id generator. An application-specific function can be
+        configured with the ``@user_id`` decorator."""
+        return uuid.uuid4().hex
 
     def context_processor(self):
         return {'turbo': self.turbo}
