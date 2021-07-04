@@ -174,9 +174,11 @@ Turbo.connectStreamSource(new WebSocket(`ws${{location.protocol.substring(4)}}//
             to = self.clients.keys()
         elif not hasattr(to, '__len__') or isinstance(to, str):
             to = [to]
+        if hasattr(stream, '__len__') and not isinstance(stream, str):
+            stream = ''.join(stream)
         for recipient in to:
             for ws in self.clients[recipient]:
                 try:
                     ws.send(stream)
-                except ConnectionClosed:
+                except ConnectionClosed:  # pragma: no cover
                     pass

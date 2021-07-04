@@ -1,4 +1,5 @@
 import unittest
+from unittest import mock
 import pytest
 from flask import Flask, render_template_string
 from werkzeug.exceptions import NotFound
@@ -148,3 +149,58 @@ class TestTurbo(unittest.TestCase):
             '<turbo-stream action="remove" target="bar">'
             '<template></template></turbo-stream>'
         )
+
+    def test_stream_response(self):
+        app = Flask(__name__)
+        turbo = turbo_flask.Turbo(app)
+
+        with app.test_request_context('/'):
+            r = turbo.stream([turbo.append('foo', 'bar'), turbo.remove('baz')])
+        assert r.get_data() == (
+            b'<turbo-stream action="append" target="bar">'
+            b'<template>foo</template>'
+            b'</turbo-stream>'
+            b'<turbo-stream action="remove" target="baz">'
+            b'<template></template>'
+            b'</turbo-stream>'
+        )
+
+    def test_push(self):
+        app = Flask(__name__)
+        turbo = turbo_flask.Turbo(app)
+        turbo.clients = {'123': [mock.MagicMock()], '456': [mock.MagicMock()]}
+
+        expected_stream = (
+            '<turbo-stream action="append" target="bar">'
+            '<template>foo</template>'
+            '</turbo-stream>'
+            '<turbo-stream action="remove" target="baz">'
+            '<template></template>'
+            '</turbo-stream>'
+        )
+        turbo.push([turbo.append('foo', 'bar'), turbo.remove('baz')])
+        turbo.clients['123'][0].send.assert_called_with(expected_stream)
+        turbo.clients['456'][0].send.assert_called_with(expected_stream)
+
+    def test_push_to(self):
+        app = Flask(__name__)
+        turbo = turbo_flask.Turbo(app)
+        turbo.clients = {'123': [mock.MagicMock()], '456': [mock.MagicMock()]}
+
+        expected_stream = (
+            '<turbo-stream action="append" target="bar">'
+            '<template>foo</template>'
+            '</turbo-stream>'
+            '<turbo-stream action="remove" target="baz">'
+            '<template></template>'
+            '</turbo-stream>'
+        )
+        turbo.push([turbo.append('foo', 'bar'), turbo.remove('baz')], to='456')
+        turbo.clients['123'][0].send.assert_not_called()
+        turbo.clients['456'][0].send.assert_called_with(expected_stream)
+        turbo.clients['123'][0].reset_mock()
+        turbo.clients['456'][0].reset_mock()
+        turbo.push([turbo.append('foo', 'bar'), turbo.remove('baz')],
+                   to=['123'])
+        turbo.clients['123'][0].send.assert_called_with(expected_stream)
+        turbo.clients['456'][0].send.assert_not_called()
