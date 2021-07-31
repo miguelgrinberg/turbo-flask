@@ -32,7 +32,7 @@ class Turbo:
                 try:
                     while True:
                         ws.receive(timeout=10)
-                except (BrokenPipeError, ConnectionClosed):
+                except (BrokenPipeError, ConnectionClosed, OSError):
                     self.clients[user_id].remove(ws)
                     if not self.clients[user_id]:
                         del self.clients[user_id]
@@ -180,5 +180,5 @@ Turbo.connectStreamSource(new WebSocket(`ws${{location.protocol.substring(4)}}//
             for ws in self.clients[recipient]:
                 try:
                     ws.send(stream)
-                except (BrokenPipeError, ConnectionClosed):  # pragma: no cover
+                except (BrokenPipeError, ConnectionClosed, OSError):  # pragma: no cover
                     pass
