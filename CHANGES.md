@@ -1,5 +1,11 @@
 # Turbo-Flask change log
 
+**Release 0.6.1** - 2021-09-17
+
+- Upgrade to turbo.js v7-rc4 ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/5986e9c5ca55e8dac09f4840dc9aa658dd26dda1))
+- Silence broken pipe errors from the WebSocket layer [#9](https://github.com/miguelgrinberg/turbo-flask/issues/9) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/00d1102ad095ecfd675b02ab7d35d69ee2448445))
+- More unit tests ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/1024af5285c2098f4284570caac64279a1aaa2a3))
+
 **Release 0.6.0** - 2021-06-30
 
 - Respect scheme of page when connecting via websocket [#8](https://github.com/miguelgrinberg/turbo-flask/issues/8) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/554ceeabed57a50a8f60b4c1c19a31c543475c87))
