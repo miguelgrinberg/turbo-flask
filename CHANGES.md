@@ -1,5 +1,10 @@
 # Turbo-Flask change log
 
+**Release 0.7.0** - 2021-11-03
+
+- Add after and before streams, and upgrade to turbo.js v7.0.1 [#18](https://github.com/miguelgrinberg/turbo-flask/issues/18) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/f66fbe5637ad29c97a6e081d093e3a17067a7c42)) (thanks **Jan Peterka**!)
+- Fix turbo stream close tag in todos example [#15](https://github.com/miguelgrinberg/turbo-flask/issues/15) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/60c3568ecfebfe20031faee1f2e17de257d73746)) (thanks **John Jansen**!)
+
 **Release 0.6.1** - 2021-09-17
 
 - Upgrade to turbo.js v7-rc4 ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/5986e9c5ca55e8dac09f4840dc9aa658dd26dda1))
