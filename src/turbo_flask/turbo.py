@@ -6,7 +6,7 @@ from markupsafe import Markup
 
 _CDN = 'https://cdn.skypack.dev'
 _PKG = '@hotwired/turbo'
-_VER = 'v7.0.0-rc.4-2gog3kUWZSvvlnfgDD3l'
+_VER = 'v7.0.1-Ugtf0P5kipzmpINBLqbM'
 
 
 class Turbo:
@@ -149,6 +149,22 @@ Turbo.connectStreamSource(new WebSocket(`ws${{location.protocol.substring(4)}}//
         :param target: the target ID for this change.
         """
         return self._make_stream('remove', '', target)
+
+    def after(self, content, target):
+        """Create an after stream.
+
+        :param content: the HTML content to include in the stream.
+        :param target: the target ID for this change.
+        """
+        return self._make_stream('after', content, target)
+
+    def before(self, content, target):
+        """Create an before stream.
+
+        :param content: the HTML content to include in the stream.
+        :param target: the target ID for this change.
+        """
+        return self._make_stream('before', content, target)
 
     def stream(self, stream):
         """Create a turbo stream response.

@@ -139,7 +139,7 @@ class TestTurbo(unittest.TestCase):
         app = Flask(__name__)
         turbo = turbo_flask.Turbo(app)
 
-        actions = ['append', 'prepend', 'replace', 'update']
+        actions = ['append', 'prepend', 'replace', 'update', 'after', 'before']
         for action in actions:
             assert getattr(turbo, action)('foo', 'bar') == (
                 f'<turbo-stream action="{action}" target="bar">'
