@@ -1,5 +1,9 @@
 # Turbo-Flask change log
 
+**Release 0.8.0** - 2021-11-26
+
+- Upgrade to turbo.js 7.1.0 [#20](https://github.com/miguelgrinberg/turbo-flask/issues/20) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/7a55661c847e04838c791b571b06bfc8f67ada81)) (thanks **Jan Peterka**!)
+
 **Release 0.7.0** - 2021-11-03
 
 - Add after and before streams, and upgrade to turbo.js v7.0.1 [#18](https://github.com/miguelgrinberg/turbo-flask/issues/18) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/f66fbe5637ad29c97a6e081d093e3a17067a7c42)) (thanks **Jan Peterka**!)
