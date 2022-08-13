@@ -6,7 +6,7 @@ Integration of Hotwire's Turbo library with Flask, to allow you to create
 applications that look and feel like single-page apps without using
 JavaScript.
 
-![Todo App Demo](todo-demo.gif)
+![Todo App Demo](examples/todos/todo-demo.gif)
 
 Resources
 ---------
