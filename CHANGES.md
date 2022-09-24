@@ -1,5 +1,13 @@
 # Turbo-Flask change log
 
+**Release 0.8.1** - 2022-09-24
+
+- Update turbo.js to 7.2.0 [#39](https://github.com/miguelgrinberg/turbo-flask/issues/39) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/f083aba4f8fe4a190c4670b89b9113ccc2ff725f)) (thanks **Jan Peterka**!)
+- Example of how to flash message from a turbo-stream ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/fc6fdc255d41dbe205009fda07440f3040040662))
+- Readme files for all examples ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/51e42153740e64b1649cca949225322aad943129))
+- Add python 3.10 to builds ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/461da5f0112ba9ff96c0745a23875855fb75b306))
+- Upgrade build to pypy-3.9 ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/f6e2b09deba21e5d8f5c710ae9aaf0e43e634c0f))
+
 **Release 0.8.0** - 2021-11-26
 
 - Upgrade to turbo.js 7.1.0 [#20](https://github.com/miguelgrinberg/turbo-flask/issues/20) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/7a55661c847e04838c791b571b06bfc8f67ada81)) (thanks **Jan Peterka**!)
