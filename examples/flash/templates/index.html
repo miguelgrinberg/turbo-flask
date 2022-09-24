@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" name="name" class="form-control" id="name" autofocus>
+    <div class="form-text text-danger" id="name_error">{{ name_error }}</div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<br>
+<p>Tip: Submit the form to see how a turbo-stream response is expanded to include an alert in an after_request handler.</p>
+{% endblock %}
