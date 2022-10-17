@@ -6,7 +6,7 @@ from markupsafe import Markup
 
 _CDN = 'https://cdn.skypack.dev'
 _PKG = '@hotwired/turbo'
-_VER = 'v7.2.0-jLjGyoEW3JseSmRfJh2M'
+_VER = 'v7.2.2-RBjb2wnkmosSQVoP27jT'
 
 
 class Turbo:
