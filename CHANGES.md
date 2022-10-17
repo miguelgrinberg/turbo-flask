@@ -1,5 +1,9 @@
 # Turbo-Flask change log
 
+**Release 0.8.2** - 2022-10-17
+
+- Upgrade to turbo.js 7.2.2 [#41](https://github.com/miguelgrinberg/turbo-flask/issues/41) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/2c933ae229bcbfe1782202cd425d84595fa9387b)) (thanks **Oliver Wehrens**!)
+
 **Release 0.8.1** - 2022-09-24
 
 - Update turbo.js to 7.2.0 [#39](https://github.com/miguelgrinberg/turbo-flask/issues/39) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/f083aba4f8fe4a190c4670b89b9113ccc2ff725f)) (thanks **Jan Peterka**!)
