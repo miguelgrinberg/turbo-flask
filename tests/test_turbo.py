@@ -20,7 +20,7 @@ class TestTurbo(unittest.TestCase):
             ('__flask_sock.turbo_stream', {})
 
         rv = app.test_client().get('/test')
-        assert b'@hotwired/turbo.js' in rv.data
+        assert b'@hotwired/turbo@' in rv.data
         assert b'Turbo.connectStreamSource' in rv.data
 
     def test_indirect_create(self):
@@ -37,7 +37,7 @@ class TestTurbo(unittest.TestCase):
             ('__flask_sock.turbo_stream', {})
 
         rv = app.test_client().get('/test')
-        assert b'@hotwired/turbo.js' in rv.data
+        assert b'@hotwired/turbo@' in rv.data
         assert b'Turbo.connectStreamSource' in rv.data
 
     def test_create_custom_ws(self):
@@ -56,7 +56,7 @@ class TestTurbo(unittest.TestCase):
             ('__flask_sock.turbo_stream', {})
 
         rv = app.test_client().get('/test')
-        assert b'@hotwired/turbo.js' in rv.data
+        assert b'@hotwired/turbo@' in rv.data
         assert b'Turbo.connectStreamSource' in rv.data
 
     def test_create_no_ws(self):
@@ -73,7 +73,7 @@ class TestTurbo(unittest.TestCase):
             url_adapter.match('/turbo-stream', websocket=True)
 
         rv = app.test_client().get('/test')
-        assert b'@hotwired/turbo.js' in rv.data
+        assert b'@hotwired/turbo@' in rv.data
         assert b'Turbo.connectStreamSource' not in rv.data
 
     def test_create_custom_turbo_version(self):
@@ -82,14 +82,30 @@ class TestTurbo(unittest.TestCase):
 
         @app.route('/test')
         def test():
-            return render_template_string('{{ turbo(version="v1.2.3") }}')
+            return render_template_string('{{ turbo(version="1.2.3") }}')
 
         url_adapter = app.url_map.bind('localhost', '/')
         assert url_adapter.match('/turbo-stream', websocket=True) == \
             ('__flask_sock.turbo_stream', {})
 
         rv = app.test_client().get('/test')
-        assert b'@hotwired/turbo@v1.2.3' in rv.data
+        assert b'@hotwired/turbo@1.2.3/dist' in rv.data
+        assert b'Turbo.connectStreamSource' in rv.data
+
+    def test_create_latest_turbo_version(self):
+        app = Flask(__name__)
+        turbo_flask.Turbo(app)
+
+        @app.route('/test')
+        def test():
+            return render_template_string('{{ turbo(version=None) }}')
+
+        url_adapter = app.url_map.bind('localhost', '/')
+        assert url_adapter.match('/turbo-stream', websocket=True) == \
+            ('__flask_sock.turbo_stream', {})
+
+        rv = app.test_client().get('/test')
+        assert b'@hotwired/turbo/dist' in rv.data
         assert b'Turbo.connectStreamSource' in rv.data
 
     def test_create_custom_turbo_url(self):

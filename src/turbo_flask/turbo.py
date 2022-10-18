@@ -4,9 +4,9 @@ from flask_sock import Sock, ConnectionClosed
 from markupsafe import Markup
 
 
-_CDN = 'https://cdn.skypack.dev'
+_CDN = 'https://cdn.jsdelivr.net'
 _PKG = '@hotwired/turbo'
-_VER = 'v7.2.2-RBjb2wnkmosSQVoP27jT'
+_VER = '7.2.2'
 
 
 class Turbo:
@@ -52,14 +52,16 @@ class Turbo:
                     default version and CDN.
         """
         if url is None:
-            url = f'{_CDN}/pin/{_PKG}@{version}/min/{_PKG}.js'
+            v = ''
+            if version is not None:
+                v = f'@{version}'
+            url = f'{_CDN}/npm/{_PKG}{v}/dist/turbo.es2017-umd.js'
         ws_route = current_app.config.get('TURBO_WEBSOCKET_ROUTE',
                                           '/turbo-stream')
         if ws_route:
-            return Markup(f'''<script type="module">
-import * as Turbo from "{url}";
-Turbo.connectStreamSource(new WebSocket(`ws${{location.protocol.substring(4)}}//${{location.host}}{ws_route}`));
-</script>''')  # noqa: E501
+            return Markup(f'''<script src="{url}"></script>
+<script>Turbo.connectStreamSource(new WebSocket(`ws${{location.protocol.substring(4)}}//${{location.host}}{ws_route}`));</script>
+''')  # noqa: E501
         else:
             return Markup(f'<script type="module" src="{url}"></script>')
 
