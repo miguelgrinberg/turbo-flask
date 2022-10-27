@@ -1,5 +1,9 @@
 # Turbo-Flask change log
 
+**Release 0.8.3** - 2022-10-27
+
+- Switch CDN from skypack to jsdelivr [#42](https://github.com/miguelgrinberg/turbo-flask/issues/42) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/0292e5831fb48cb32312ca5dec323fdc9c665375))
+
 **Release 0.8.2** - 2022-10-17
 
 - Upgrade to turbo.js 7.2.2 [#41](https://github.com/miguelgrinberg/turbo-flask/issues/41) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/2c933ae229bcbfe1782202cd425d84595fa9387b)) (thanks **Oliver Wehrens**!)
