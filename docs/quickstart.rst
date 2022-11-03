@@ -54,7 +54,8 @@ object. There is only one configuration variable supported by this extension:
 
 - ``TURBO_WEBSOCKET_ROUTE``: The route URL on which the client can connect
   using WebSocket to receive Turbo Stream updates. By default, the
-  ``/turbo-stream`` URL is used. If this variable is set to ``None``,
+  ``/turbo-stream`` URL is used. If this variable is set to ``None``, the
+  WebSocket endpoint is disabled.
 
 How to Use
 ~~~~~~~~~~
@@ -159,7 +160,27 @@ in the ``to`` argument::
 Deployment
 ~~~~~~~~~~
 
+This extension implementes a WebSocket endpoint. The default location for this
+endpoint is ``/turbo-stream``, but this can be changed by setting the
+``TURBO_WEBSOCKET_ROUTE`` configuration variable.
+
+When using a reverse proxy in front of the Flask application, the WebSocket
+endpoint may need a special configuration to work correctly. For example, in
+Nginx, the endpoint must be configured to explicitly forward the ``Upgrade``
+and ``Connection`` headers, which are not proxied by default. While the actual
+configuration may vary according to the needs of each application, the
+following example can be used as a starting point::
+
+    location /turbo-stream {
+        include proxy_params;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+        proxy_pass http://localhost:5000;
+    }
+
 The WebSocket support in this extension is provided by the
 `Flask-Sock <https://github.com/miguelgrinberg/flask-sock>`_ package, which
 supports WebSocket servers based on Gunicorn, Eventlet, Gevent and the Flask
-development web server. Refer to its documentation for deployment details.
+development web server. Refer to the Flask-Sock documentation for additional
+deployment details.
