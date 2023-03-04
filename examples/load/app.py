@@ -30,13 +30,13 @@ def page2():
     return render_template('page2.html')
 
 
-@app.before_first_request
-def before_first_request():
-    threading.Thread(target=update_load).start()
-
-
 def update_load():
     with app.app_context():
         while True:
             time.sleep(5)
             turbo.push(turbo.replace(render_template('loadavg.html'), 'load'))
+
+
+th = threading.Thread(target=update_load)
+th.daemon = True
+th.start()
