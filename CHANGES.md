@@ -1,5 +1,11 @@
 # Turbo-Flask change log
 
+**Release 0.8.4** - 2023-03-04
+
+- Update turbo.js to 7.3.0 ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/a7944a6b10852555c2882be71a4b2e209d07a630))
+- Document use of nginx as reverse proxy [#44](https://github.com/miguelgrinberg/turbo-flask/issues/44) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/39407dd7a9bef74fc89f43616f516e27e3ed78fa))
+- Remove deprecated `@before_first_request` decorator from "load" example ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/6a24b2d93ea1da0d1c17f104131dfd901c30a24d))
+
 **Release 0.8.3** - 2022-10-27
 
 - Switch CDN from skypack to jsdelivr [#42](https://github.com/miguelgrinberg/turbo-flask/issues/42) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/0292e5831fb48cb32312ca5dec323fdc9c665375))
