@@ -1,6 +1,6 @@
 [project]
 name = "Turbo-Flask"
-version = "0.8.5"
+version = "0.8.6.dev0"
 authors = [
     { name = "Miguel Grinberg", email = "miguel.grinberg@gmail.com" },
 ]
