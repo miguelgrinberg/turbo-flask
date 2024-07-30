@@ -1,5 +1,9 @@
 # Turbo-Flask change log
 
+**Release 0.8.5** - 2024-07-30
+
+- Update hotwire turbo to version 8.0.5 ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/ec1e3f268214744030272314c1663be79fab4a4b))
+
 **Release 0.8.4** - 2023-03-04
 
 - Update turbo.js to 7.3.0 ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/a7944a6b10852555c2882be71a4b2e209d07a630))
