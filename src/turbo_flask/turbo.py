@@ -109,69 +109,72 @@ class Turbo:
             return self.clients != {}
         return to in self.clients
 
-    def _make_stream(self, action, content, target):
-        starget = str(target)
-        if starget.startswith("."):
-            turbo_target = f'targets="{target}"'
-        else:
-            turbo_target = f'target="{target}"'
-        return (f'<turbo-stream action="{action}" {turbo_target}>'
+    def _make_stream(self, action, content, target, multiple):
+        return (f'<turbo-stream action="{action}" '
+                f'{"targets" if multiple else "target"}="{target}">'
                 f'<template>{content}</template></turbo-stream>')
 
-    def append(self, content, target):
+    def append(self, content, target, multiple=False):
         """Create an append stream.
 
         :param content: the HTML content to include in the stream.
         :param target: the target ID or CSS query selector for this change.
+        :param multiple: set to True if target is a CSS query selector.
         """
-        return self._make_stream('append', content, target)
+        return self._make_stream('append', content, target, multiple)
 
-    def prepend(self, content, target):
+    def prepend(self, content, target, multiple=False):
         """Create a prepend stream.
 
         :param content: the HTML content to include in the stream.
         :param target: the target ID or CSS query selector for this change.
+        :param multiple: set to True if target is a CSS query selector.
         """
-        return self._make_stream('prepend', content, target)
+        return self._make_stream('prepend', content, target, multiple)
 
-    def replace(self, content, target):
+    def replace(self, content, target, multiple=False):
         """Create a replace stream.
 
         :param content: the HTML content to include in the stream.
         :param target: the target ID or CSS query selector for this change.
+        :param multiple: set to True if target is a CSS query selector.
         """
-        return self._make_stream('replace', content, target)
+        return self._make_stream('replace', content, target, multiple)
 
-    def update(self, content, target):
+    def update(self, content, target, multiple=False):
         """Create an update stream.
 
         :param content: the HTML content to include in the stream.
         :param target: the target ID or CSS query selector for this change.
+        :param multiple: set to True if target is a CSS query selector.
         """
-        return self._make_stream('update', content, target)
+        return self._make_stream('update', content, target, multiple)
 
-    def remove(self, target):
+    def remove(self, target, multiple=False):
         """Create a remove stream.
 
         :param target: the target ID or CSS query selector for this change.
+        :param multiple: set to True if target is a CSS query selector.
         """
-        return self._make_stream('remove', '', target)
+        return self._make_stream('remove', '', target, multiple)
 
-    def after(self, content, target):
+    def after(self, content, target, multiple=False):
         """Create an after stream.
 
         :param content: the HTML content to include in the stream.
         :param target: the target ID or CSS query selector for this change.
+        :param multiple: set to True if target is a CSS query selector.
         """
-        return self._make_stream('after', content, target)
+        return self._make_stream('after', content, target, multiple)
 
-    def before(self, content, target):
+    def before(self, content, target, multiple=False):
         """Create an before stream.
 
         :param content: the HTML content to include in the stream.
         :param target: the target ID or CSS query selector for this change.
+        :param multiple: set to True if target is a CSS query selector.
         """
-        return self._make_stream('before', content, target)
+        return self._make_stream('before', content, target, multiple)
 
     def stream(self, stream):
         """Create a turbo stream response.
