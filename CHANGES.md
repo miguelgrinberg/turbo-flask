@@ -1,8 +1,14 @@
 # Turbo-Flask change log
 
+**Release 0.8.6** - 2025-01-28
+
+- Option to target multiple elements in a turbo stream [#54](https://github.com/miguelgrinberg/turbo-flask/issues/54) ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/70cf12c2e8bcb41b4df061fc033ff9c3be4ba324)) (thanks **thisistheplace**!)
+- Upgrade Hotwire Turbo to version 8.0.11 ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/d5a4153771c2be5555bf96cf4f3774a489cd72e9))
+- Add Python 3.13 CI builds ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/a55b9d91a9178f7207bd04e7963b30f612b88fca))
+
 **Release 0.8.5** - 2024-07-30
 
-- Update hotwire turbo to version 8.0.5 ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/ec1e3f268214744030272314c1663be79fab4a4b))
+- Update Hotwire Turbo to version 8.0.5 ([commit](https://github.com/miguelgrinberg/turbo-flask/commit/ec1e3f268214744030272314c1663be79fab4a4b))
 
 **Release 0.8.4** - 2023-03-04
 
