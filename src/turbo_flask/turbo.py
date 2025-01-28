@@ -119,7 +119,8 @@ class Turbo:
 
         :param content: the HTML content to include in the stream.
         :param target: the target ID or CSS query selector for this change.
-        :param multiple: set to True if target is a CSS query selector.
+        :param multiple: set to ``True`` when ``target`` references multiple
+                         elements.
         """
         return self._make_stream('append', content, target, multiple)
 
@@ -128,7 +129,8 @@ class Turbo:
 
         :param content: the HTML content to include in the stream.
         :param target: the target ID or CSS query selector for this change.
-        :param multiple: set to True if target is a CSS query selector.
+        :param multiple: set to ``True`` when ``target`` references multiple
+                         elements.
         """
         return self._make_stream('prepend', content, target, multiple)
 
@@ -137,7 +139,8 @@ class Turbo:
 
         :param content: the HTML content to include in the stream.
         :param target: the target ID or CSS query selector for this change.
-        :param multiple: set to True if target is a CSS query selector.
+        :param multiple: set to ``True`` when ``target`` references multiple
+                         elements.
         """
         return self._make_stream('replace', content, target, multiple)
 
@@ -146,7 +149,8 @@ class Turbo:
 
         :param content: the HTML content to include in the stream.
         :param target: the target ID or CSS query selector for this change.
-        :param multiple: set to True if target is a CSS query selector.
+        :param multiple: set to ``True`` when ``target`` references multiple
+                         elements.
         """
         return self._make_stream('update', content, target, multiple)
 
@@ -154,7 +158,8 @@ class Turbo:
         """Create a remove stream.
 
         :param target: the target ID or CSS query selector for this change.
-        :param multiple: set to True if target is a CSS query selector.
+        :param multiple: set to ``True`` when ``target`` references multiple
+                         elements.
         """
         return self._make_stream('remove', '', target, multiple)
 
@@ -163,7 +168,8 @@ class Turbo:
 
         :param content: the HTML content to include in the stream.
         :param target: the target ID or CSS query selector for this change.
-        :param multiple: set to True if target is a CSS query selector.
+        :param multiple: set to ``True`` when ``target`` references multiple
+                         elements.
         """
         return self._make_stream('after', content, target, multiple)
 
@@ -172,7 +178,8 @@ class Turbo:
 
         :param content: the HTML content to include in the stream.
         :param target: the target ID or CSS query selector for this change.
-        :param multiple: set to True if target is a CSS query selector.
+        :param multiple: set to ``True`` when ``target`` references multiple
+                         elements.
         """
         return self._make_stream('before', content, target, multiple)
 

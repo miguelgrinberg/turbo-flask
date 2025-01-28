@@ -27,6 +27,9 @@ Homepage = "https://github.com/miguelgrinberg/turbo-flask"
 "Bug Tracker" = "https://github.com/miguelgrinberg/turbo-flask/issues"
 
 [project.optional-dependencies]
+dev = [
+    "tox",
+]
 docs = [
     "sphinx",
 ]
