@@ -122,7 +122,7 @@ class Turbo:
         """Create an append stream.
 
         :param content: the HTML content to include in the stream.
-        :param target: the target ID for this change.
+        :param target: the target ID or CSS query selector for this change.
         """
         return self._make_stream('append', content, target)
 
@@ -130,7 +130,7 @@ class Turbo:
         """Create a prepend stream.
 
         :param content: the HTML content to include in the stream.
-        :param target: the target ID for this change.
+        :param target: the target ID or CSS query selector for this change.
         """
         return self._make_stream('prepend', content, target)
 
@@ -138,7 +138,7 @@ class Turbo:
         """Create a replace stream.
 
         :param content: the HTML content to include in the stream.
-        :param target: the target ID for this change.
+        :param target: the target ID or CSS query selector for this change.
         """
         return self._make_stream('replace', content, target)
 
@@ -146,14 +146,14 @@ class Turbo:
         """Create an update stream.
 
         :param content: the HTML content to include in the stream.
-        :param target: the target ID for this change.
+        :param target: the target ID or CSS query selector for this change.
         """
         return self._make_stream('update', content, target)
 
     def remove(self, target):
         """Create a remove stream.
 
-        :param target: the target ID for this change.
+        :param target: the target ID or CSS query selector for this change.
         """
         return self._make_stream('remove', '', target)
 
@@ -161,7 +161,7 @@ class Turbo:
         """Create an after stream.
 
         :param content: the HTML content to include in the stream.
-        :param target: the target ID for this change.
+        :param target: the target ID or CSS query selector for this change.
         """
         return self._make_stream('after', content, target)
 
@@ -169,7 +169,7 @@ class Turbo:
         """Create an before stream.
 
         :param content: the HTML content to include in the stream.
-        :param target: the target ID for this change.
+        :param target: the target ID or CSS query selector for this change.
         """
         return self._make_stream('before', content, target)
 
