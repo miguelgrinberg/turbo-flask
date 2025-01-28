@@ -220,3 +220,17 @@ class TestTurbo(unittest.TestCase):
                    to=['123'])
         turbo.clients['123'][0].send.assert_called_with(expected_stream)
         turbo.clients['456'][0].send.assert_not_called()
+
+    def test_make_stream(self):
+        params_list = [("target", "bar", False), ("targets", ".bars", True)]
+        app = Flask(__name__)
+        turbo = turbo_flask.Turbo(app)
+        for target, name, multiple in params_list:
+            with self.subTest(target=target, name=name, multiple=multiple):
+                expected = (
+                    f'<turbo-stream action="foo" {target}="{name}">'
+                    '<template>baz</template>'
+                    '</turbo-stream>'
+                )
+                got = turbo._make_stream("foo", "baz", name, multiple)
+                self.assertEqual(expected, got)
