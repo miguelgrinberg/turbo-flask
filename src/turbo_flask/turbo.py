@@ -110,7 +110,12 @@ class Turbo:
         return to in self.clients
 
     def _make_stream(self, action, content, target):
-        return (f'<turbo-stream action="{action}" target="{target}">'
+        starget = str(target)
+        if starget.startswith("."):
+            turbo_target = f'targets="{target}"'
+        else:
+            turbo_target = f'target="{target}"'
+        return (f'<turbo-stream action="{action}" {turbo_target}>'
                 f'<template>{content}</template></turbo-stream>')
 
     def append(self, content, target):
