@@ -6,7 +6,7 @@ from markupsafe import Markup
 
 _CDN = 'https://cdn.jsdelivr.net'
 _PKG = '@hotwired/turbo'
-_VER = '8.0.5'
+_VER = '8.0.11'
 
 
 class Turbo:
